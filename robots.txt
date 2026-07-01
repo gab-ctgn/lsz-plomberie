@@ -1,0 +1,27 @@
+# robots.txt — LSZ Plomberie
+# Autorise tous les moteurs, y compris les robots d'IA (pour être cité
+# dans ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot, Claude).
+
+User-agent: *
+Allow: /
+
+# Robots d'IA explicitement autorisés (citation dans les réponses IA)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# Remplacer par le domaine réel une fois en ligne
+Sitemap: https://www.lszplomberie.fr/sitemap.xml

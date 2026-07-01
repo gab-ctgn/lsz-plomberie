@@ -1,0 +1,66 @@
+========================================================================
+  LSZ PLOMBERIE — COMMENT REMPLACER LES IMAGES  (guide simple)
+========================================================================
+
+Le site affiche une image quand un fichier porte LE BON NOM au BON ENDROIT.
+Tu n'as donc PAS besoin de toucher au code : il suffit de mettre tes photos
+dans le dossier "assets" (ou "assets/realisations") avec EXACTEMENT le nom
+attendu ci-dessous. Même nom = l'image apparaît toute seule.
+
+
+------------------------------------------------------------------------
+  ETAT ACTUEL — tout est déjà branché
+------------------------------------------------------------------------
+Ces fichiers sont déjà présents et affichés sur le site :
+
+  assets/logo.png                      -> logo (en-tête + pied de page)
+  assets/realisations/avant.jpg        -> photo "AVANT" (curseur du hero)
+  assets/realisations/apres.jpg        -> photo "APRES" (curseur du hero)
+  assets/realisations/sdb1.jpg         -> galerie : "Rénovation salle de bain"
+  assets/realisations/chauf1.jpg       -> galerie : "Installation chauffage"
+  assets/realisations/neuf.jpg         -> galerie : "Chantier neuf"
+  assets/realisations/toilette1.jpg    -> galerie : "Sanitaire & WC"
+
+
+------------------------------------------------------------------------
+  POUR CHANGER UNE PHOTO — 2 méthodes
+------------------------------------------------------------------------
+
+METHODE A (la plus simple, RECOMMANDEE) — garder le même nom
+  1. Prends ta nouvelle photo.
+  2. Renomme-la EXACTEMENT comme le fichier à remplacer
+     (ex : "sdb1.jpg" pour la salle de bain).
+     Attention : bien ".jpg" en minuscules, sans espace, sans accent.
+  3. Colle-la dans le dossier "assets/realisations" et remplace l'ancienne
+     quand Windows demande "Remplacer le fichier ?" -> Oui.
+  4. Recharge la page dans le navigateur avec Ctrl + F5 (vide le cache).
+  -> La nouvelle photo s'affiche. Aucun code à modifier.
+
+  IMPORTANT : sur Windows, l'explorateur cache parfois l'extension ".jpg".
+  Si tu ne la vois pas : ouvre l'Explorateur -> onglet "Affichage" ->
+  coche "Extensions de noms de fichiers". Sinon tu risques d'avoir
+  "sdb1.jpg.jpg" (double extension) et l'image ne s'affichera pas.
+
+
+METHODE B — utiliser un fichier avec un autre nom (ex : "ma-photo.jpg")
+  Il faut alors pointer le code vers ce nom. Ouvre "index.html", cherche
+  le nom actuel (Ctrl + F) et remplace-le par le tien. Emplacements :
+
+  - Hero avant/après : cherche  apres.jpg   et  avant.jpg
+  - Galerie          : cherche  sdb1.jpg , chauf1.jpg , neuf.jpg , toilette1.jpg
+
+  Exemple : remplace   src="assets/realisations/sdb1.jpg"
+            par        src="assets/realisations/ma-photo.jpg"
+
+
+------------------------------------------------------------------------
+  CONSEILS PHOTOS
+------------------------------------------------------------------------
+- Logo : PNG carré (~512x512), fond transparent, nommé "logo.png".
+- Hero AVANT / APRES : prends les deux photos sous le MEME angle et le MEME
+  cadrage (format vertical 4:5 idéal), sinon le curseur "décale" l'image.
+- Galerie : format paysage ou vertical, au moins 1000 px de large, en .jpg.
+- Poids : compresse tes photos (viser < 400 Ko chacune) pour un site rapide.
+  Outil gratuit : https://squoosh.app
+- Tu peux ajouter d'autres photos : mets-les dans "assets/realisations" puis
+  duplique un bloc <figure> de la galerie dans index.html (demande-moi si besoin).

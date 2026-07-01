@@ -1,0 +1,17 @@
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Outils / preview
+.claude/
+
+# Dépendances (si build Tailwind local un jour)
+node_modules/
