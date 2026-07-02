@@ -213,20 +213,9 @@
     lines.forEach(function (l) { io.observe(l); });
   })();
 
-  /* ---- Effets curseur (désactivés si reduced-motion ou tactile) ------ */
+  /* ---- Boutons magnétiques (désactivés si reduced-motion ou tactile) - */
   var fine = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
   if (!reduce && fine) {
-    // Spotlight qui suit le curseur
-    document.querySelectorAll(".service-card, .why-card, .review-card").forEach(function (card) {
-      card.classList.add("has-spotlight");
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", e.clientX - r.left + "px");
-        card.style.setProperty("--my", e.clientY - r.top + "px");
-      });
-    });
-
-    // Boutons magnétiques
     document.querySelectorAll("[data-magnetic]").forEach(function (btn) {
       var raf = null;
       btn.addEventListener("pointermove", function (e) {
@@ -241,25 +230,6 @@
       btn.addEventListener("pointerleave", function () {
         if (raf) cancelAnimationFrame(raf);
         btn.style.transform = "";
-      });
-    });
-
-    // Tilt 3D
-    document.querySelectorAll("[data-tilt]").forEach(function (el) {
-      var raf = null;
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(function () {
-          el.style.transform =
-            "perspective(900px) rotateX(" + -py * 6 + "deg) rotateY(" + px * 8 + "deg)";
-        });
-      });
-      el.addEventListener("pointerleave", function () {
-        if (raf) cancelAnimationFrame(raf);
-        el.style.transform = "";
       });
     });
   }

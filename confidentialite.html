@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -20,13 +20,15 @@
         extend: {
           colors: {
             brand: {
-              blue: '#004aad', 'blue-dark': '#003a87', 'blue-light': '#4d86d6',
-              red: '#ff3131', 'red-dark': '#c81f1f', ink: '#0c1015', slate: '#5b6470'
+              blue: '#004aad', 'blue-dark': '#00397f', 'blue-light': '#4d86d6',
+              red: '#ff3131', 'red-dark': '#d81f1f', ink: '#17140f',
+              paper: '#f6f3ee', 'paper-2': '#efeae1', line: '#e3ddd1', slate: '#6b6459'
             }
           },
           fontFamily: {
-            display: ['Outfit', 'system-ui', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
           },
           fontWeight: { 500: '500', 600: '600', 700: '700', 800: '800', 900: '900' }
         }
@@ -36,19 +38,19 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body class="font-body bg-white text-brand-ink antialiased">
+<body class="font-body bg-brand-paper text-brand-ink antialiased">
 
-  <header class="border-b border-slate-200">
+  <header class="border-b border-brand-line">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-2.5" aria-label="LSZ Plomberie — accueil">
         <img src="assets/logo.png" alt="Logo LSZ Plomberie" class="h-10 w-10 object-contain"
              onerror="this.replaceWith(document.getElementById('logo-fallback').content.cloneNode(true))" />
         <template id="logo-fallback">
-          <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-blue to-brand-red text-white font-display font-800 text-sm">LSZ</span>
+          <span class="grid h-10 w-10 place-items-center rounded bg-brand-ink text-brand-paper font-display font-700 text-sm">LSZ</span>
         </template>
-        <span class="font-display font-800 text-lg tracking-tight">LSZ<span class="text-brand-blue"> Plomberie</span></span>
+        <span class="font-display font-600 text-xl">LSZ<span class="text-brand-slate"> Plomberie</span></span>
       </a>
-      <a href="index.html" class="text-sm font-600 text-brand-slate hover:text-brand-blue transition">← Retour à l'accueil</a>
+      <a href="index.html" class="font-mono text-xs uppercase tracking-wider text-brand-slate hover:text-brand-ink transition">← Retour</a>
     </div>
   </header>
 
@@ -131,7 +133,7 @@
     </div>
   </main>
 
-  <footer class="border-t border-slate-200 py-10">
+  <footer class="border-t border-brand-line py-10">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-brand-slate">
       <p>© <span id="year"></span> LSZ Plomberie — Tous droits réservés.</p>
       <nav class="flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Liens légaux">

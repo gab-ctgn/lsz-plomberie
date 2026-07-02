@@ -33,9 +33,9 @@
   <!-- Preconnect + polices -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN + config marque -->
+  <!-- Tailwind CDN + config marque (direction éditoriale — papier chaud + encre) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -44,17 +44,21 @@
           colors: {
             brand: {
               blue: '#004aad',
-              'blue-dark': '#003a87',
+              'blue-dark': '#00397f',
               'blue-light': '#4d86d6',
               red: '#ff3131',
-              'red-dark': '#c81f1f',
-              ink: '#0c1015',   // off-black (jamais #000)
-              slate: '#5b6470',
+              'red-dark': '#d81f1f',
+              ink: '#17140f',       // encre chaude (jamais #000)
+              paper: '#f6f3ee',     // papier crème
+              'paper-2': '#efeae1', // papier plus foncé
+              line: '#e3ddd1',      // filet 1px
+              slate: '#6b6459',     // gris texte chaud
             }
           },
           fontFamily: {
-            display: ['Outfit', 'system-ui', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
           },
           fontWeight: { 500: '500', 600: '600', 700: '700', 800: '800', 900: '900' },
         }
@@ -150,7 +154,7 @@
   </script>
 </head>
 
-<body class="font-body bg-white text-brand-ink antialiased selection:bg-brand-red/20">
+<body class="font-body bg-brand-paper text-brand-ink antialiased">
 
   <!-- Barre de progression de lecture -->
   <div id="scroll-progress" aria-hidden="true"></div>
@@ -163,7 +167,7 @@
   <!-- ============ HEADER / NAV ============ -->
   <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div id="nav-shell" class="mt-3 flex items-center justify-between rounded-2xl border border-transparent px-3 sm:px-4 py-2.5 transition-all duration-300">
+      <div id="nav-shell" class="flex items-center justify-between border-b border-transparent px-1 py-4 transition-all duration-300">
 
         <!-- Logo -->
         <a href="#accueil" class="flex items-center gap-2.5 shrink-0" aria-label="LSZ Plomberie — accueil">
@@ -171,10 +175,10 @@
                class="h-10 w-10 sm:h-11 sm:w-11 object-contain"
                onerror="this.replaceWith(document.getElementById('logo-fallback').content.cloneNode(true))" />
           <template id="logo-fallback">
-            <span class="grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-blue to-brand-red text-white font-display font-800 text-sm">LSZ</span>
+            <span class="grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded bg-brand-ink text-brand-paper font-display font-700 text-sm">LSZ</span>
           </template>
-          <span class="font-display font-800 text-[15px] sm:text-lg tracking-tight leading-none">
-            LSZ<span class="text-brand-blue"> Plomberie</span>
+          <span class="font-display font-600 text-[17px] sm:text-xl leading-none">
+            LSZ<span class="text-brand-slate"> Plomberie</span>
           </span>
         </a>
 
@@ -206,7 +210,7 @@
 
     <!-- Menu mobile -->
     <div id="mobile-menu" class="lg:hidden hidden px-4 sm:px-6">
-      <nav class="mt-2 rounded-2xl border border-slate-200 bg-white/95 backdrop-blur p-2 shadow-xl shadow-brand-blue/5" aria-label="Navigation mobile">
+      <nav class="mt-1 border-t border-brand-line bg-brand-paper px-1 pb-3" aria-label="Navigation mobile">
         <a href="#services" class="mobile-link">Services</a>
         <a href="#apropos" class="mobile-link">À propos</a>
         <a href="#zones" class="mobile-link">Zones d'intervention</a>
@@ -214,7 +218,7 @@
         <a href="#avis" class="mobile-link">Avis clients</a>
         <a href="#faq" class="mobile-link">FAQ</a>
         <a href="#contact" class="mobile-link">Contact</a>
-        <a href="tel:+33632713354" class="mt-1 flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-4 py-3 font-display font-700 text-white">
+        <a href="tel:+33632713354" class="mt-4 flex items-center justify-center gap-2 rounded bg-brand-red px-4 py-3.5 font-body font-600 text-white">
           Appeler — 06 32 71 33 54
         </a>
       </nav>
@@ -226,60 +230,53 @@
     <!-- ============ HERO (asymétrique split) ============ -->
     <section id="accueil" class="relative overflow-hidden min-h-[100dvh] flex items-center pt-28 pb-24">
       <div class="pointer-events-none absolute inset-0 -z-10">
-        <div class="aurora-blob aurora-1 absolute -top-40 -right-40 h-[36rem] w-[36rem] rounded-full bg-brand-blue/10 blur-3xl"></div>
-        <div class="aurora-blob aurora-2 absolute top-1/3 -left-40 h-[28rem] w-[28rem] rounded-full bg-brand-red/10 blur-3xl"></div>
-        <div class="absolute inset-0 bg-grid"></div>
+        <div class="hero-rule"></div>
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
           <!-- Texte -->
           <div class="lg:col-span-7 reveal">
-            <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-600 text-brand-slate">
-              <span class="relative flex h-2 w-2">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-red opacity-75"></span>
-                <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-red"></span>
-              </span>
-              Artisan plombier chauffagiste · Voiron (38)
-            </span>
+            <p class="flex items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-brand-slate">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-brand-red"></span>
+              Artisan plombier chauffagiste — Voiron (38)
+            </p>
 
-            <h1 class="mt-6 font-display font-900 tracking-tighter leading-[0.95] text-5xl sm:text-6xl xl:text-7xl">
+            <h1 class="mt-7 font-display font-500 leading-[0.98] text-[3.1rem] sm:text-7xl xl:text-[5.4rem]" style="letter-spacing:-0.035em">
               La plomberie<br />
-              qui <span class="text-brand-blue">coule</span>
-              <span class="relative inline-block text-brand-red">de source
-                <svg class="draw-line absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 200 10" fill="none" aria-hidden="true"><path d="M2 8C40 3 160 3 198 8" stroke="#ff3131" stroke-width="3" stroke-linecap="round"/></svg>
-              </span>
+              qui coule
+              <span class="relative inline-block italic text-brand-blue">de&nbsp;source
+                <svg class="draw-line absolute -bottom-1 left-0 w-full" height="10" viewBox="0 0 200 10" fill="none" aria-hidden="true"><path d="M2 8C40 3 160 3 198 8" stroke="#ff3131" stroke-width="3" stroke-linecap="round"/></svg>
+              </span>.
             </h1>
 
-            <p class="mt-7 text-lg text-brand-slate leading-relaxed max-w-[52ch]">
+            <p class="mt-8 text-lg text-brand-slate leading-relaxed max-w-[52ch]">
               Une fuite, un chauffage en panne, une salle de bain à refaire ?
               LSZ Plomberie intervient à Voiron et dans 16 communes alentour — installation,
               dépannage et rénovation, avec un devis gratuit et un travail soigné.
             </p>
 
             <div class="mt-9 flex flex-col sm:flex-row gap-3">
-              <a href="tel:+33632713354" class="btn-primary group" data-magnetic>
+              <a href="tel:+33632713354" class="btn-primary">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                Appeler maintenant
+                Appeler — 06 32 71 33 54
               </a>
-              <a href="#services" class="btn-secondary" data-magnetic>Voir les services</a>
+              <a href="#services" class="btn-secondary">Voir les services</a>
             </div>
 
-            <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div class="mt-12 grid grid-cols-3 gap-6 border-t border-brand-line pt-8 max-w-lg">
               <div>
-                <p class="font-display font-800 text-2xl text-brand-ink">Devis gratuit</p>
-                <p class="text-sm text-brand-slate">sans engagement</p>
+                <p class="font-display font-500 text-3xl text-brand-ink">Gratuit</p>
+                <p class="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-brand-slate">Devis sans engagement</p>
               </div>
-              <div class="hidden sm:block h-10 w-px bg-slate-200"></div>
               <div>
-                <p class="font-display font-800 text-2xl text-brand-ink"><span data-count="16">0</span> communes</p>
-                <p class="text-sm text-brand-slate">autour de Voiron</p>
+                <p class="font-display font-500 text-3xl text-brand-ink"><span data-count="16">0</span></p>
+                <p class="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-brand-slate">Communes desservies</p>
               </div>
-              <div class="hidden sm:block h-10 w-px bg-slate-200"></div>
               <div>
-                <p class="font-display font-800 text-2xl text-brand-ink">Neuf &amp; réno</p>
-                <p class="text-sm text-brand-slate">particuliers &amp; pros</p>
+                <p class="font-display font-500 text-3xl text-brand-ink">5,0</p>
+                <p class="mt-1 font-mono text-[0.68rem] uppercase tracking-wider text-brand-slate">Avis Google</p>
               </div>
             </div>
           </div>
@@ -287,8 +284,12 @@
           <!-- Visuel -->
           <div class="lg:col-span-5 reveal" data-delay="120">
             <div class="relative">
-              <!-- Comparateur avant / après (glisser la poignée). Remplacer les .svg par vos photos. -->
-              <div id="hero-compare" class="hero-compare relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200 shadow-2xl shadow-brand-blue/15 select-none touch-pan-y">
+              <div class="mb-3 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-widest text-brand-slate">
+                <span>Avant / Après</span>
+                <span>Chantier LSZ</span>
+              </div>
+              <!-- Comparateur avant / après (glisser la poignée). Remplacer les .jpg par vos photos. -->
+              <div id="hero-compare" class="hero-compare relative aspect-[4/5] overflow-hidden border border-brand-line select-none touch-pan-y">
                 <!-- Après : couche du dessous, pleine largeur -->
                 <img src="assets/realisations/apres.jpg" alt="Installation LSZ Plomberie après intervention"
                      class="absolute inset-0 h-full w-full object-cover" draggable="false" loading="lazy" />
@@ -325,109 +326,114 @@
       </div>
 
       <!-- bandeau marquee communes -->
-      <div class="absolute bottom-0 inset-x-0 border-t border-slate-100 bg-white/70 backdrop-blur-sm py-3 overflow-hidden">
-        <div class="marquee font-display font-600 text-sm text-brand-slate" aria-hidden="true">
+      <div class="absolute bottom-0 inset-x-0 border-t border-brand-line bg-brand-paper py-3.5 overflow-hidden">
+        <div class="marquee" aria-hidden="true">
           <span>Voiron</span><span>Moirans</span><span>Rives</span><span>Coublevie</span><span>Voreppe</span><span>Tullins</span><span>La Buisse</span><span>Vourey</span><span>Saint-Jean-de-Moirans</span><span>Saint-Étienne-de-Crossey</span><span>Saint-Nicolas-de-Macherin</span><span>Charnècles</span><span>Fontanil-Cornillon</span><span>Chirens</span><span>Morette</span><span>Saint-Aupre</span>
           <span>Voiron</span><span>Moirans</span><span>Rives</span><span>Coublevie</span><span>Voreppe</span><span>Tullins</span><span>La Buisse</span><span>Vourey</span><span>Saint-Jean-de-Moirans</span><span>Saint-Étienne-de-Crossey</span><span>Saint-Nicolas-de-Macherin</span><span>Charnècles</span><span>Fontanil-Cornillon</span><span>Chirens</span><span>Morette</span><span>Saint-Aupre</span>
         </div>
       </div>
     </section>
 
-    <!-- ============ SERVICES (bento asymétrique) ============ -->
+    <!-- ============ SERVICES (liste éditoriale numérotée) ============ -->
     <section id="services" class="py-24 sm:py-32">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="max-w-2xl reveal">
-          <p class="section-eyebrow">Nos prestations</p>
-          <h2 class="section-title">Ce que nous faisons, <span class="text-brand-blue">de A à Z</span></h2>
-          <p class="mt-4 text-brand-slate text-lg leading-relaxed">
-            Spécialisés en plomberie sanitaire, chauffage &amp; climatisation. Sur chantier neuf,
-            en rénovation, ou pour un dépannage : une intervention propre et durable.
+        <div class="grid lg:grid-cols-12 gap-6 items-end reveal">
+          <div class="lg:col-span-8">
+            <p class="section-eyebrow"><span class="eb-num">01</span> Nos prestations</p>
+            <h2 class="section-title mt-6">Chauffage <span class="italic text-brand-blue">&amp;</span><br />sanitaire.</h2>
+          </div>
+          <p class="lg:col-span-4 text-brand-slate leading-relaxed">
+            Plomberie sanitaire, chauffage hydraulique et climatisation. Sur chantier neuf,
+            en rénovation, ou pour un dépannage — un travail propre et durable.
           </p>
         </div>
 
-        <div class="mt-14 grid gap-4 md:grid-cols-6">
+        <div class="svc-list mt-14">
 
-          <!-- chauffage hydraulique -->
-          <article class="reveal service-card md:col-span-3 lg:col-span-4 bg-brand-ink text-white" data-tilt>
-            <div class="relative z-10">
-              <span class="service-ico bg-white/10 text-white">
-                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="11" rx="1.5"/><path d="M8 6v11M12 6v11M16 6v11"/><path d="M7 17v2M17 17v2"/></svg>
-              </span>
-              <h3 class="mt-6 font-display font-800 text-2xl tracking-tight">Chauffage hydraulique &amp; climatisation</h3>
-              <p class="mt-3 text-white/70 leading-relaxed max-w-[48ch]">
+          <!-- 01 -->
+          <article class="svc-row reveal">
+            <div class="svc-index">01</div>
+            <div>
+              <h3 class="svc-name">Chauffage hydraulique <span class="amp">&amp;</span> climatisation</h3>
+              <p class="svc-desc">
                 Installation et mise en service de systèmes de chauffage à eau, radiateurs,
-                plancher chauffant et solutions de climatisation. Confort et économies à l'année.
+                plancher chauffant et climatisation. Confort et économies toute l'année.
               </p>
-              <ul class="mt-6 flex flex-wrap gap-2 text-sm">
-                <li class="chip-dark">Chaudière</li>
-                <li class="chip-dark">Plancher chauffant</li>
-                <li class="chip-dark">Radiateurs</li>
-                <li class="chip-dark">Climatisation</li>
-              </ul>
-            </div>
-            <div class="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-brand-blue/40 blur-2xl"></div>
-          </article>
-
-          <!-- dépannage (rouge) -->
-          <article class="reveal service-card md:col-span-3 lg:col-span-2 bg-brand-red text-white" data-delay="80">
-            <span class="service-ico bg-white/15 text-white">
-              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
-            </span>
-            <h3 class="mt-6 font-display font-800 text-2xl tracking-tight">Dépannage rapide</h3>
-            <p class="mt-3 text-white/85 leading-relaxed">
-              Fuite, panne de chauffage, canalisation bouchée : intervention efficace pour
-              remettre l'eau et la chaleur en route.
-            </p>
-            <a href="tel:+33632713354" class="mt-6 inline-flex items-center gap-2 font-display font-700 text-white underline-offset-4 hover:underline">
-              Appeler le plombier
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </article>
-
-          <!-- plomberie sanitaire -->
-          <article class="reveal service-card md:col-span-3 lg:col-span-2 bg-white border border-slate-200" data-delay="120">
-            <span class="service-ico bg-brand-blue/10 text-brand-blue">
-              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7v4"/><path d="M4 9h9"/><path d="M6 6h4"/><path d="M8 6v3"/><path d="M13 9h3a2 2 0 0 1 2 2"/><path d="M16 13v-2"/><path d="M16 16.5a1.5 1.5 0 1 0 0 .01"/></svg>
-            </span>
-            <h3 class="mt-6 font-display font-800 text-2xl tracking-tight">Plomberie sanitaire</h3>
-            <p class="mt-3 text-brand-slate leading-relaxed">
-              Robinetterie, WC, douche, lavabo, alimentation et évacuation. Pose soignée
-              et étanchéité garantie.
-            </p>
-          </article>
-
-          <!-- chantiers neufs & réno -->
-          <article class="reveal service-card md:col-span-6 lg:col-span-4 bg-white border border-slate-200" data-delay="160">
-            <div class="grid sm:grid-cols-2 gap-6 items-center">
-              <div>
-                <span class="service-ico bg-brand-blue/10 text-brand-blue">
-                  <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
-                </span>
-                <h3 class="mt-6 font-display font-800 text-2xl tracking-tight">Chantiers neufs &amp; rénovation</h3>
-                <p class="mt-3 text-brand-slate leading-relaxed">
-                  De la construction neuve à la rénovation complète de salle de bain :
-                  étude, installation et finitions par un seul interlocuteur.
-                </p>
+              <div class="svc-tags">
+                <span class="svc-tag">Chaudière</span>
+                <span class="svc-tag">Plancher chauffant</span>
+                <span class="svc-tag">Radiateurs</span>
+                <span class="svc-tag">Climatisation</span>
               </div>
-              <ul class="grid gap-2.5">
-                <li class="feature-line">Salle de bain clé en main</li>
-                <li class="feature-line">Réseaux d'alimentation &amp; évacuation</li>
-                <li class="feature-line">Entretien courant &amp; contrôle</li>
-                <li class="feature-line">Conseils &amp; devis détaillé</li>
-              </ul>
             </div>
+            <div class="svc-aside hidden lg:flex items-start gap-3">
+              <svg class="h-6 w-6 shrink-0 text-brand-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="11" rx="1.5"/><path d="M8 6v11M12 6v11M16 6v11"/><path d="M7 17v2M17 17v2"/></svg>
+              <span class="text-sm leading-relaxed">Neuf &amp; rénovation, particuliers et professionnels.</span>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="svc-row reveal" data-delay="60">
+            <div class="svc-index">02</div>
+            <div>
+              <h3 class="svc-name">Plomberie sanitaire</h3>
+              <p class="svc-desc">
+                Robinetterie, WC, douche, lavabo, alimentation et évacuation. Pose soignée
+                et étanchéité garantie, jusqu'aux finitions.
+              </p>
+            </div>
+            <div class="svc-aside hidden lg:flex items-start gap-3">
+              <svg class="h-6 w-6 shrink-0 text-brand-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7v4"/><path d="M4 9h9"/><path d="M6 6h4"/><path d="M8 6v3"/><path d="M13 9h3a2 2 0 0 1 2 2"/><path d="M16 13v-2"/><path d="M16 16.5a1.5 1.5 0 1 0 0 .01"/></svg>
+              <span class="text-sm leading-relaxed">Salle de bain, cuisine, réseaux d'eau.</span>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="svc-row reveal" data-delay="120">
+            <div class="svc-index">03</div>
+            <div>
+              <h3 class="svc-name">Dépannage plomberie <span class="amp">&amp;</span> chauffage</h3>
+              <p class="svc-desc">
+                Fuite, panne de chauffage, canalisation bouchée : intervention efficace pour
+                remettre l'eau et la chaleur en route au plus vite.
+              </p>
+            </div>
+            <div class="svc-aside hidden lg:flex flex-col items-start gap-2">
+              <a href="tel:+33632713354" class="svc-cta">
+                Appeler le plombier
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <span class="font-mono text-xs text-brand-slate">06 32 71 33 54</span>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="svc-row reveal" data-delay="180">
+            <div class="svc-index">04</div>
+            <div>
+              <h3 class="svc-name">Chantiers neufs <span class="amp">&amp;</span> rénovation</h3>
+              <p class="svc-desc">
+                De la construction neuve à la rénovation complète de salle de bain : étude,
+                installation et finitions par un seul interlocuteur.
+              </p>
+            </div>
+            <ul class="svc-aside svc-list-check hidden lg:grid text-sm">
+              <li>Salle de bain clé en main</li>
+              <li>Réseaux d'alimentation &amp; évacuation</li>
+              <li>Entretien courant &amp; contrôle</li>
+            </ul>
           </article>
         </div>
 
-        <p class="mt-8 text-brand-slate reveal">
+        <p class="mt-10 text-brand-slate reveal">
           Un besoin précis qui n'est pas listé ?
-          <a href="tel:+33632713354" class="font-600 text-brand-blue underline-offset-2 hover:underline">Appelez-nous</a>, on vous répond.
+          <a href="tel:+33632713354" class="text-brand-blue underline underline-offset-2">Appelez-nous</a>, on vous répond.
         </p>
       </div>
     </section>
 
     <!-- ============ À PROPOS + POURQUOI ============ -->
-    <section id="apropos" class="py-24 sm:py-32 bg-[#f7f8fa]">
+    <section id="apropos" class="py-24 sm:py-32 bg-brand-paper-2">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
@@ -446,8 +452,8 @@
 
             <!-- Histoire / expérience — remplacer les [placeholders] -->
             <p class="mt-4 text-brand-slate text-lg leading-relaxed max-w-[56ch]">
-              Installée à Voiron depuis <span class="font-600 text-brand-ink">[année]</span>,
-              LSZ Plomberie met <span class="font-600 text-brand-ink">[X] ans d'expérience</span>
+              Installée à Voiron depuis 1 an et demi sur Voiron,
+              LSZ Plomberie met ses années d'expérience
               au service des habitants et des professionnels du Voironnais — du petit dépannage
               à la rénovation complète, avec le même soin.
             </p>
@@ -455,15 +461,15 @@
             <!-- Repères -->
             <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
               <div>
-                <p class="font-display font-800 text-2xl text-brand-ink">Depuis [année]</p>
+                <p class="font-display font-800 text-2xl text-brand-ink">Depuis 1 an et demi</p>
                 <p class="text-sm text-brand-slate">à Voiron (38)</p>
               </div>
-              <div class="hidden sm:block h-10 w-px bg-slate-200"></div>
+              <div class="hidden sm:block h-10 w-px bg-brand-line"></div>
               <div>
-                <p class="font-display font-800 text-2xl text-brand-ink">[X]+ ans</p>
+                <p class="font-display font-800 text-2xl text-brand-ink">Déjà 27 avis 5 sur 5</p>
                 <p class="text-sm text-brand-slate">d'expérience</p>
               </div>
-              <div class="hidden sm:block h-10 w-px bg-slate-200"></div>
+              <div class="hidden sm:block h-10 w-px bg-brand-line"></div>
               <div>
                 <p class="font-display font-800 text-2xl text-brand-ink">100 %</p>
                 <p class="text-sm text-brand-slate">local &amp; artisanal</p>
@@ -472,13 +478,13 @@
 
             <!-- Signature artisan — déposer assets/artisan.jpg (sinon initiales) -->
             <div class="mt-8 flex items-center gap-3">
-              <img src="assets/artisan.jpg" alt="Artisan LSZ Plomberie" class="h-14 w-14 rounded-full object-cover border border-slate-200"
+              <img src="assets/realisations/profil.jpg" alt="Artisan LSZ Plomberie" class="h-14 w-14 rounded-full object-cover border border-brand-line"
                    onerror="this.replaceWith(document.getElementById('artisan-fallback').content.cloneNode(true))" />
               <template id="artisan-fallback">
-                <span class="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-brand-blue to-brand-red text-white font-display font-800">LSZ</span>
+                <span class="grid h-14 w-14 place-items-center rounded-full bg-brand-ink text-brand-paper font-display font-700">LSZ</span>
               </template>
               <div>
-                <p class="font-display font-700 text-brand-ink leading-tight">[Prénom Nom]</p>
+                <p class="font-display font-700 text-brand-ink leading-tight">Lucas</p>
                 <p class="text-sm text-brand-slate">Artisan plombier chauffagiste</p>
               </div>
             </div>
@@ -559,7 +565,7 @@
           <!-- carte Google Maps : chargée au clic (RGPD — pas de cookie tiers avant consentement) -->
           <div class="lg:col-span-7 reveal" data-delay="120">
             <div id="map-holder"
-                 class="relative overflow-hidden rounded-[2rem] border border-slate-200 shadow-xl shadow-brand-blue/10 aspect-[4/3] lg:aspect-[16/11]"
+                 class="relative overflow-hidden rounded-md border border-brand-line aspect-[4/3] lg:aspect-[16/11]"
                  data-map-src="https://www.google.com/maps?q=7+chemin+Croix+Rousse,+38500+Voiron&output=embed">
               <!-- Aperçu + consentement (remplacé par l'iframe au clic) -->
               <button type="button" id="map-consent" class="map-consent">
@@ -577,7 +583,7 @@
     </section>
 
     <!-- ============ RÉALISATIONS ============ -->
-    <section id="realisations" class="py-24 sm:py-32 bg-[#f7f8fa]">
+    <section id="realisations" class="py-24 sm:py-32 bg-brand-paper-2">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex flex-wrap items-end justify-between gap-6 reveal">
           <div class="max-w-2xl">
@@ -621,7 +627,7 @@
             <p class="section-eyebrow">Avis clients</p>
             <h2 class="section-title">Ils nous font <span class="text-brand-blue">confiance</span></h2>
 
-            <div class="mt-7 inline-flex items-center gap-4 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+            <div class="mt-7 inline-flex items-center gap-4 rounded-md border border-brand-line bg-brand-paper px-5 py-4">
               <span class="font-display font-900 text-4xl tracking-tight text-brand-ink">5,0</span>
               <span>
                 <span class="review-stars" aria-label="Note moyenne 5 sur 5" role="img">
@@ -728,14 +734,14 @@
     </section>
 
     <!-- ============ FAQ (extractible pour l'IA + SEO local) ============ -->
-    <section id="faq" class="py-24 sm:py-32 bg-[#f7f8fa]">
+    <section id="faq" class="py-24 sm:py-32 bg-brand-paper-2">
       <div class="max-w-3xl mx-auto px-4 sm:px-6">
         <div class="reveal">
           <p class="section-eyebrow">Questions fréquentes</p>
           <h2 class="section-title">Tout savoir sur <span class="text-brand-blue">nos interventions</span></h2>
         </div>
 
-        <div class="mt-12 divide-y divide-slate-200 border-y border-slate-200 reveal">
+        <div class="mt-12 divide-y divide-slate-200 border-y border-brand-line reveal">
           <details class="faq-item" open>
             <summary class="faq-q">Quels services propose LSZ Plomberie à Voiron ?</summary>
             <div class="faq-a"><p>LSZ Plomberie, plombier chauffagiste à Voiron (38500), réalise l'installation de plomberie sanitaire, le chauffage hydraulique et la climatisation, ainsi que le dépannage et l'entretien. Nous intervenons sur chantiers neufs comme en rénovation, pour les particuliers et les professionnels.</p></div>
@@ -830,7 +836,7 @@
                 Devis gratuit et conseils sans engagement.
               </p>
 
-              <a href="tel:+33632713354" data-magnetic class="mt-8 inline-flex items-center gap-3 rounded-2xl bg-brand-red px-6 py-4 font-display font-800 text-lg text-white shadow-xl shadow-brand-red/25 transition active:scale-[0.98]">
+              <a href="tel:+33632713354" data-magnetic class="mt-8 inline-flex items-center gap-3 rounded bg-brand-red px-6 py-4 font-body font-600 text-lg text-white transition active:scale-[0.98]">
                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 06 32 71 33 54
               </a>
@@ -873,7 +879,7 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="border-t border-slate-200 py-14">
+  <footer class="border-t border-brand-line py-14">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="grid gap-10 md:grid-cols-3">
         <div>
@@ -881,14 +887,14 @@
             <img src="assets/logo.png" alt="Logo LSZ Plomberie" class="h-10 w-10 object-contain"
                  onerror="this.replaceWith(document.getElementById('logo-fallback-2').content.cloneNode(true))" />
             <template id="logo-fallback-2">
-              <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-blue to-brand-red text-white font-display font-800 text-sm">LSZ</span>
+              <span class="grid h-10 w-10 place-items-center rounded bg-brand-ink text-brand-paper font-display font-700 text-sm">LSZ</span>
             </template>
             <span class="font-display font-800 text-lg tracking-tight">LSZ<span class="text-brand-blue"> Plomberie</span></span>
           </div>
           <p class="mt-4 text-brand-slate leading-relaxed max-w-[38ch]">
             La plomberie qui coule de source. Plombier chauffagiste à Voiron et alentours.
           </p>
-          <a href="https://www.instagram.com/lszplomberie.voiron" target="_blank" rel="noopener" class="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-brand-ink transition hover:bg-brand-blue hover:text-white hover:border-brand-blue" aria-label="Instagram LSZ Plomberie">
+          <a href="https://www.instagram.com/lszplomberie.voiron" target="_blank" rel="noopener" class="mt-5 inline-flex h-11 w-11 items-center justify-center rounded border border-brand-line text-brand-ink transition hover:bg-brand-ink hover:text-brand-paper hover:border-brand-ink" aria-label="Instagram LSZ Plomberie">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
         </div>
@@ -917,7 +923,7 @@
         </div>
       </div>
 
-      <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm text-brand-slate">
+      <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-brand-line pt-6 text-sm text-brand-slate">
         <p>© <span id="year"></span> LSZ Plomberie — Tous droits réservés.</p>
         <nav class="flex flex-wrap items-center gap-x-4 gap-y-1" aria-label="Liens légaux">
           <a href="mentions-legales.html" class="hover:text-brand-blue transition">Mentions légales</a>
